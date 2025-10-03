@@ -16,15 +16,28 @@ std::string convToLower(std::string src)
 std::set<std::string> parseStringToWords(string rawWords)
 {
 
+  std::set<std::string> wordSet;
+  std::string currWord = "";
 
+  for (char c : rawWords) {
+    if (std::isalnum(c)) {
+      currWord += c;
+    }
+    else {
+      if (currWord.length() >= 2) {
+        wordSet.insert(convToLower(currWord));
+      }
+      currWord = "";
+    }
+  }
 
+  if (currWord.length() >= 2) { //last word/
+    wordSet.insert(convToLower(currWord));
+  }
+  currWord = "";
 
-
-
-
-
-
-
+  return wordSet;
+  
 }
 
 /**************************************************
